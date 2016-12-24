@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts.order("created_at DESC")
+    @posts = @group.posts.recent
 
     if current_user != @group.user
       redirect_to root_path, alert: "You have no permission."
